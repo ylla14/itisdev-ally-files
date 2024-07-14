@@ -2,10 +2,7 @@ import java.util.Scanner;
 
 public class driver {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         InventoryManagement inventory = new InventoryManagement();
-        pointOfSales POS = new pointOfSales(inventory);
-
         // Add items to inventory
         inventory.addItem(new CoffeeBeans(1000, 2200));
         inventory.addItem(new Syrup("Chocolate", 750, 550));
@@ -18,6 +15,18 @@ public class driver {
         inventory.addItem(new Lids("Lid: Hot", 100, 100));
         inventory.addItem(new Lids("Lid: Cold", 100, 140));
         inventory.addItem(new Straws(100, 100));
+        
+
+        // Ensure the GUI is initialized with items in inventory
+        InventoryView imsview = new InventoryView();
+        InventoryController imscontroller = new InventoryController(inventory, imsview);
+
+        // Keep the existing command line interface, if needed
+        Scanner sc = new Scanner(System.in);
+        pointOfSales POS = new pointOfSales(inventory);
+
+        // Make sure the GUI frame is visible
+        imsview.getFrame().setVisible(true);
 
         int choice = 0;
         while (choice != 3) {
@@ -47,5 +56,4 @@ public class driver {
         }
         sc.close();
     }
-    
 }

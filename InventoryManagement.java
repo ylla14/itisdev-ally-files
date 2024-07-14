@@ -146,7 +146,9 @@ public class InventoryManagement {
             }
         }
     }
-    
-    
+
+    public ArrayList<InventoryItem> getInventory() {
+        return inventory;
+    }
     
 }
